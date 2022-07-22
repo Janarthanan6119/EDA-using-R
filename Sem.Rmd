@@ -1,0 +1,118 @@
+---
+title: "Semester"
+author: "Jana"
+date: "27/06/2022"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+```{r}
+data <- read.csv(file.choose(),header = T)
+data
+```
+#The dataset is about a graduate school dataset.It describes about the performance of the students.
+
+#admit - whether the student is applied for next degree.
+#gre - marks of the student.
+#gpa - marks in percentage.
+#rank - ranks of the students.
+```{r}
+dim(data)
+```
+# There are 400 rows and 4 columns.
+```{r}
+head(data)
+
+```
+# Univariate Analysis - We can Visualise only one variable.
+```{r}
+# Histogram is used to visualise the one numeric variable
+hist(data$gre,
+     main = "Marks of Students",
+     xlab="Marks",
+     ylab="Frequency")
+```
+```{r}
+hist(data$gpa,
+     main = "Percentage of Students",
+     xlab="Percentage",
+     ylab="Frequency")
+```
+```{r}
+boxplot(data$gre,
+        main="Students Marks",
+        ylab="Marks")
+```
+```{r}
+boxplot(data$gpa,
+        main="Students Percentage",
+        ylab="GPA")
+```
+```{r}
+boxplot(data$rank,
+        main="Students Rank",
+        ylab="Rank")
+```
+```{r}
+#barplot is used to visualise the categorical variable
+barplot(table(data$admit))
+```
+```{r}
+barplot(table(data$rank))
+```
+# Bivariate Analysis - We can Visualise  two variables.
+```{r}
+# boxplot is used to visualise the one numeric variable, also used to visualise one numerical and one catogorical variable.
+boxplot(data$rank ~ data$admit,
+        main="Degree Applied Vs Rank",
+        xlab = "Applied or not",
+        ylab="Ranks")
+```
+```{r}
+boxplot(data$gre ~ data$admit,
+        main="Degree Applied Vs Marks",
+        xlab = "Applied or not",
+        ylab="Marks")
+```
+```{r}
+boxplot(data$gpa ~ data$admit,
+        main="Degree Applied Vs GPA",
+        xlab = "Applied or not",
+        ylab="GPA")
+```
+```{r}
+#plot is used to visualise the two numerical variables
+plot(gre ~ gpa,data=data)
+```
+```{r}
+#cor is used to measure the relationship between two variables
+cor(data$gre,data$gpa)
+#It describes there is a positive relationship between these two variables
+```
+#Conclusion:
+# By Analysis, we can come to know,the students those who are applied for the next degree got higher percentage then those who are not applied.
+
+#  But, there is only a slight difference of marks between the applied and not applied students.
+
+#   So, the Teachers encourage the students (those who are not applied for next degree) to do next degree, if they have an confusion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
