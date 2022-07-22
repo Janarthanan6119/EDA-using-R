@@ -1,0 +1,186 @@
+---
+title: "Model"
+author: "Jana"
+date: "14/06/2022"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+data<-read.csv(file.choose(),header = T)
+data # This dataset is about whether the school students will continue the college or not
+view(data)
+```
+#type_school - Type of the school,the students are studied.
+#school_accreditation - Grade of the school. 	
+#gender - Gender of the students	
+#interest - Interest of the students whether they are willing to goto the college	#residence - where the students are residing	
+#parent_age - Parents  age.
+#parent_salary - Parents Salary 	
+#house_area - Area of the house.
+#average_grades - Average Grade for the students	
+#parent_was_in_college - Whether the parents studied in the college 
+#in_college - whether the students are studying in the college or not
+
+```{r}
+dim(data)
+#There are 1000 rows and 11 Columns
+```
+```{r}
+str(data) # which displays the data type of the variables
+```
+# Numerical variables - parent_age,parent_salary,house_area,average_grades
+# Categorical variables - type_school,school_accreditation,gender,interest,residence,parent_was_in_college,in_college
+
+```{r}
+barplot(table(x=data$type_school),main="Type of Schools",xlab="Schools")
+# Maximum number of students studied in Academic Schools
+```
+```{r}
+barplot(table(data$school_accreditation),
+        main = "Schools Accreditation",
+        xlab="Grades for Schools")
+# Maximum number of students studied in a "B" grade School
+```
+```{r}
+barplot(table(data$gender),
+        main = "Male Vs Female",
+        xlab = "Gender")
+# There is a Maximum Number of Male students
+```
+```{r}
+barplot(table(data$interest),
+        main = "Interests for Students",
+        xlab="Types of Interests")
+# There is a lot of students are interested to go to college
+```
+```{r}
+barplot(table(data$residence),
+        main = "Students Residence",
+        xlab = "Types of Residence ")
+# There is a Lot of students from Urban Sides.
+```
+```{r}
+hist(data$parent_age,
+     main = "Age",
+     xlab = "Parents Age")
+# Maximum Parents Age are 50-55
+# The distribution looks like Left Skew
+```
+```{r}
+hist(data$parent_salary,
+     main = "Parents Salary Details",
+     xlab = "Salary")
+# Maximum Parents Salaries are 4000000 - 6000000 USD Dollars
+# The distribution looks like Symmetric
+```
+```{r}
+hist(data$house_area,
+     main = "Area of House",
+     xlab = "Area")
+# Maximum Houses areas are looks like 70 - 80 Sq.Ft(Square Feet)
+# The distribution looks like Symmetric
+```
+```{r}
+hist(data$average_grades,
+     main = "Average Marks for students",
+     xlab = "Marks")
+# Maximum Students Average Marks is 80% 
+# The distribution looks like Right skew
+```
+```{r}
+barplot(table(data$parent_was_in_college),
+        main = "Parents are Studied in College?",
+        xlab = "Yes or No")
+# Maximum Parents are studied in College.
+```
+```{r}
+barplot(table(data$in_college),
+        main = "How Much Students are Studying in College?",
+        xlab = "Yes or No")
+# 50% of Students are Studying and 50% are not Studying.
+```
+```{r}
+table(data$interest)
+boxplot(data$average_grades ~ data$interest,
+        main="Interests Vs Marks",
+        xlab = "Interests",
+        ylab = "Marks")
+# Uncertainty students have a lot of Marks
+```
+```{r}
+
+boxplot(data$average_grades ~ data$school_accreditation,
+        main="School Grade Vs Marks",
+        xlab = "Grades",
+        ylab = "Marks")
+# B school Students have higher Marks than A School.
+```
+```{r}
+boxplot(data$average_grades ~ data$residence,
+        main="Residence Vs Marks",
+        xlab = "Residence",
+        ylab = "Marks")
+# Rural students have higher marks than Urban
+```
+```{r}
+boxplot(data$average_grades ~ data$in_college,
+        main="College Students Vs Marks",
+        xlab = "College Students",
+        ylab = "Marks")
+# College Studying Students Marks are Higher than those who didnt studied.
+```
+```{r}
+boxplot(data$average_grades ~ data$gender,
+        main="Gender Vs Marks",
+        xlab = "Gender",
+        ylab = "Marks")
+# Both Male and Female have a Same amount of Marks
+```
+```{r}
+boxplot(data$average_grades ~ data$parent_was_in_college,
+        main="Parent Studies  Vs Marks",
+        xlab = "Parent Studies",
+        ylab = "Marks")
+# Parents whose are studied in College, their Marks are higher than those who didn't studied.
+```
+
+```{r}
+plot(data$parent_salary,data$parent_age)
+# It shows there is no relationship between Parents Age and Parents Salary
+```
+```{r}
+cor(data$parent_age,data$parent_salary)
+# It ensures the relationship between Age and Salary have a Negative Correlation
+```
+
+ 
+ We can calculate a Marks for interested and uninterested students and we can get a insight is, there is a very small difference between interested and uninterested students.
+ 
+So, the Councellors give some couunselling to the uninterested students for go to the college to enhance their future well.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
